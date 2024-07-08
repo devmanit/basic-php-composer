@@ -39,7 +39,7 @@ stages:
     
     - script: |
         #Verification si une ou plusieurs extension devrai etre personnalisees
-        if [ ! -z "$(RQEXTENSIONS)" ]
+        if [ ! -z "$(DEVEXTENSION)" ]
         then
           echo $(RQEXTENSIONS)
           cat $(rootFolder)/composer.json
