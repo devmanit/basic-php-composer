@@ -41,11 +41,15 @@ stages:
         #Verification si une ou plusieurs extension devrai etre personnalisees
         if [ ! -z "$(DEVEXTENSION)" ]
         then
-          echo $(RQEXTENSIONS)
+          listeExtensions=$(DEVEXTENSION)
+
+          echo $listeExtensions
+
           cat $(rootFolder)/composer.json
           
           echo '========= Debut de explode============'
-          IFS=';' read -ra extensions <<< "$(RQEXTENSIONS)"
+
+          IFS=';' read -ra extensions <<< "$listeExtensions"
           for extensionVersion in "${extensions[@]}"; 
           do
             echo "$extensionVersion"
@@ -58,9 +62,10 @@ stages:
             echo "VERSION  $versionExt"
 
             sed -i "s/devman\/$nom.*/devman\/$nom\":\"$versionExt\",/g" $(rootFolder)/composer.json
-
           done
+          
           echo '========= FIN de explode============'
+
           sed -i 's/nesbot\/carbon.*/devman\/carbon":"10.0.0"/g' $(rootFolder)/composer.json
           echo "Apres remplacement"
           cat $(rootFolder)/composer.json
