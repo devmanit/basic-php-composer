@@ -32,6 +32,10 @@ stages:
         php -version
       workingDirectory: $(rootFolder)
       displayName: 'Use PHP version $(phpVersion)'
+      
+    - script: |
+        cat $(rootFolder)/composer.json
+      displayName: Contenu du fichier composer
 
     - script: composer install --no-interaction --prefer-dist
       workingDirectory: $(rootFolder)
