@@ -42,10 +42,13 @@ stages:
         cat $(rootFolder)/composer.json
         echo "one potato two potato" | awk '{gsub(/potato/,"banana")}1'
         echo "one potato two potato" | awk '{sub(/potato/,"banana")}1'
+        echo '========= Debut de explode============'
         IFS=';' read -ra RQEXT <<< "$(RQEXTENSIONS)"
-        for i in "${RQEXT[:]}"; do
+        for i in "${RQEXT[@]}"; 
+        do
           echo "$i"
         done
+        echo '========= FIN de explode============'
         #sed -i 's/nesbot\/carbon.*/revenuquebec\/$(RQEXTENSIONS)/g' $(rootFolder)/composer.json
         echo "Apres remplacement"
         cat $(rootFolder)/composer.json
