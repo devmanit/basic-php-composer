@@ -57,7 +57,13 @@ stages:
 
             echo "NOM - $nom"
             echo "VERSION  $versionExt"
-            finDeRequired=sed -n "/devman\/$nom.*,/p" $(rootFolder)/composer.json
+            if [ sed -n "/devman\/$nom.*,/p" $(rootFolder)/composer.json ]
+            then
+              echo "NOM - $nom"
+              echo "Virgule existe"
+            else
+              echo "Pas Virgule existe"
+            fi
             echo "$finDeRequired"
             sed -i "s/devman\/$nom.*/devman\/$nom\":\"$versionExt\",/g" $(rootFolder)/composer.json
           done
