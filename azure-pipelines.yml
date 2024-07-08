@@ -48,9 +48,12 @@ stages:
         do
           echo "$extensionVersion"
           IFS=':' read -r -a extension <<< "$extensionVersion"
-          echo "EXTENSION NOM ':' ${extension[0]}"
-          echo "EXTENSION VERSION ':' ${extension[1]}"
-          sed -i 's/devman\/${extension[0]}.*/devman\/${extension[0]}:"${extension[1]}"/g' $(rootFolder)/composer.json
+          nom=${extension[0]}
+          versionExt=${extension[1]}
+          echo "NOM - $nom"
+          echo "VERSION  $versionExt"
+          echo "'s/devman\/$nom.*/devman\/$nom:\"$versionExt\"/g'"
+          sed -i 's/devman\/$nom.*/devman\/$nom:"$versionExt"/g' $(rootFolder)/composer.json
         done
         echo '========= FIN de explode============'
         #sed -i 's/nesbot\/carbon.*/revenuquebec\/$(RQEXTENSIONS)/g' $(rootFolder)/composer.json
