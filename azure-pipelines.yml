@@ -23,25 +23,25 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - script: |
-        sudo update-alternatives --set php /usr/bin/php$(phpVersion)
-        sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
-        sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
-        sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
-        sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
-        php -version
-      workingDirectory: $(rootFolder)
-      displayName: 'Use PHP version $(phpVersion)'
+    #- script: |
+    #    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    #    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+    #    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+    #    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+    #    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+    #    php -version
+    #  workingDirectory: $(rootFolder)
+    #  displayName: 'Use PHP version $(phpVersion)'
 
-    - script: composer install --no-interaction --prefer-dist
-      workingDirectory: $(rootFolder)
-      displayName: 'Composer install dans le repertoire : $(rootFolder)'
+    #- script: composer install --no-interaction --prefer-dist
+    #  workingDirectory: $(rootFolder)
+    #  displayName: 'Composer install dans le repertoire : $(rootFolder)'
     
     - script: |
         cat $(rootFolder)/composer.json
         echo "one potato two potato" | awk '{gsub(/potato/,"banana")}1'
         echo "one potato two potato" | awk '{sub(/potato/,"banana")}1'
-        sed -i 's/nesbot\/carbon.*/revenuquebec\/rq-revenuquebec:" "3.0.3"/g' $(rootFolder)/composer.json
+        sed -i 's/nesbot\/carbon.*/revenuquebec\/rq-revenuquebec": "3.0.3"/g' $(rootFolder)/composer.json
         echo "Apres remplacement"
         cat $(rootFolder)/composer.json
       displayName: Contenu du fichier composer
