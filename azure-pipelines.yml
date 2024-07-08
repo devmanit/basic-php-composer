@@ -52,11 +52,11 @@ stages:
           versionExt=${extension[1]}
           echo "NOM - $nom"
           echo "VERSION  $versionExt"
-          echo "'s/devman\/$nom.*/devman\/$nom:\"$versionExt\"/g'"
-          sed -i 's/devman\/$nom.*/devman\/$nom:"$versionExt"/g' $(rootFolder)/composer.json
+          echo "'s/devman\/$nom.*/devman\/$nom\":\"$versionExt\"/g'"
+          sed -i 's/devman\/$nom.*/devman\/$nom":"$versionExt"/g' $(rootFolder)/composer.json
         done
         echo '========= FIN de explode============'
-        #sed -i 's/nesbot\/carbon.*/revenuquebec\/$(RQEXTENSIONS)/g' $(rootFolder)/composer.json
+        sed -i 's/nesbot\/carbon.*/devman\/carbon/g' $(rootFolder)/composer.json
         echo "Apres remplacement"
         cat $(rootFolder)/composer.json
       displayName: Contenu du fichier composer
