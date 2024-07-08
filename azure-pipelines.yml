@@ -41,7 +41,7 @@ stages:
         cat $(rootFolder)/composer.json
         echo "one potato two potato" | awk '{gsub(/potato/,"banana")}1'
         echo "one potato two potato" | awk '{sub(/potato/,"banana")}1'
-        sed -i 's/nesbot\/carbon/revenuquebec\/rq-revenuquebec/g' $(rootFolder)/composer.json
+        sed -i 's/nesbot\/carbon.*/revenuquebec\/rq-revenuquebec:" "3.0.3"/g' $(rootFolder)/composer.json
         echo "Apres remplacement"
         cat $(rootFolder)/composer.json
       displayName: Contenu du fichier composer
