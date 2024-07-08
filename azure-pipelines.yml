@@ -58,8 +58,8 @@ stages:
             echo "NOM - $nom"
             echo "VERSION  $versionExt"
             finDeRequired=$(sed -n "/devman\/$nom.*,/p" $(rootFolder)/composer.json)
-             echo "$finDeRequired"
-            if [ -z $finDeRequired  ]
+            echo "$finDeRequired"
+            if [ ! -z "$finDeRequired" ]
             then
               echo "NOM - $nom"
               echo "Virgule existe"
