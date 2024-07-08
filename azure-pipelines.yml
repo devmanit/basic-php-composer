@@ -54,7 +54,7 @@ stages:
           echo "VERSION  $versionExt"
           monSed="s/devman\/$nom.*/devman\/$nom\":\"$versionExt\"/g"
           echo $monSed
-          sed -i '"$monSed"' $(rootFolder)/composer.json
+          sed -i '$monSed' $(rootFolder)/composer.json
 
         done
         echo '========= FIN de explode============'
