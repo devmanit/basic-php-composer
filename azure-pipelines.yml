@@ -43,13 +43,11 @@ stages:
         then
           listeExtensions=$(DEVEXTENSION)
 
-          echo $listeExtensions
-
           cat $(rootFolder)/composer.json
           
           echo '========= Debut de explode============'
 
-          IFS=';' read -ra extensions <<< "$listeExtensions"
+          IFS=';' read -ra extensions <<< "$(DEVEXTENSION)"
           for extensionVersion in "${extensions[@]}"; 
           do
             echo "$extensionVersion"
