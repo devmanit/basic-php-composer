@@ -47,20 +47,19 @@ stages:
         for extensionVersion in "${extensions[@]}"; 
         do
           echo "$extensionVersion"
+
           IFS=':' read -r -a extension <<< "$extensionVersion"
           nom=${extension[0]}
           versionExt=${extension[1]}
+
           echo "NOM - $nom"
           echo "VERSION  $versionExt"
-          monSed="s/devman\/$nom.*/devman\/$nom\":\"$versionExt\"/g"
-          echo $monSed
-          sed -i "s/devman\/$nom.*/devman\/$nom\":\"$versionExt\"/g" $(rootFolder)/composer.json
+
+          sed -i "s/devman\/$nom.*/devman\/$nom\":\"$versionExt\",/g" $(rootFolder)/composer.json
 
         done
         echo '========= FIN de explode============'
         sed -i 's/nesbot\/carbon.*/devman\/carbon":"10.0.0"/g' $(rootFolder)/composer.json
-        #sed -i 's/devman\/dev\-base.*/devman\/dev-base":"3.3.2"/g' $(rootFolder)/composer.json
-        #sed -i 's/devman\/dev-emplois.*/devman\/dev-emplois":"3.2.1"/g' $(rootFolder)/composer.json
         echo "Apres remplacement"
         cat $(rootFolder)/composer.json
       displayName: Contenu du fichier composer
