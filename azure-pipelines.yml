@@ -43,10 +43,14 @@ stages:
         echo "one potato two potato" | awk '{gsub(/potato/,"banana")}1'
         echo "one potato two potato" | awk '{sub(/potato/,"banana")}1'
         echo '========= Debut de explode============'
-        IFS=';' read -ra RQEXT <<< "$(RQEXTENSIONS)"
-        for i in "${RQEXT[@]}"; 
+        IFS=';' read -ra extensions <<< "$(RQEXTENSIONS)"
+        for extensionVersion in "${extensions[@]}"; 
         do
-          echo "$i"
+          echo "$extensionVersion"
+          IFS=':' read -r -a extension <<< "$extensionVersion"
+          echo "EXTENSION NOM ':' ${extension[0]}"
+          echo "EXTENSION VERSION ':' ${extension[1]}"
+          sed -i 's/devman\/${extension[0]}.*/devman\/${extension[0]}:"${extension[1]}"/g' $(rootFolder)/composer.json
         done
         echo '========= FIN de explode============'
         #sed -i 's/nesbot\/carbon.*/revenuquebec\/$(RQEXTENSIONS)/g' $(rootFolder)/composer.json
