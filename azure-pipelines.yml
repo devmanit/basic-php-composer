@@ -57,9 +57,9 @@ stages:
 
         done
         echo '========= FIN de explode============'
-        sed -i 's/nesbot\/carbon.*/devman\/carbon/g' $(rootFolder)/composer.json
-        sed -i 's/devman\/dev\-base.*/devman\/dev-base":"3.3.2"/g'
-        sed -i 's/devman\/dev-emplois.*/devman\/dev-emplois":"3.2.1"/g'
+        sed -i 's/nesbot\/carbon.*/devman\/carbon":"10.0.0"/g' $(rootFolder)/composer.json
+        sed -i 's/devman\/dev\-base.*/devman\/dev-base":"3.3.2"/g' $(rootFolder)/composer.json
+        sed -i 's/devman\/dev-emplois.*/devman\/dev-emplois":"3.2.1"/g' $(rootFolder)/composer.json
         echo "Apres remplacement"
         cat $(rootFolder)/composer.json
       displayName: Contenu du fichier composer
