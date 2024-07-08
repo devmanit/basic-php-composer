@@ -1,5 +1,8 @@
 {
     "require": {
-        "nesbot/carbon": "2.53.*"
+        "nesbot/carbon": "2.53.*",
+        "devman/dev-base": "^2.53.1-dev",
+        "devman/dev-emplois": "^3.0",
+        "devman/dev-recrutement": "~5.0.4"
     }
 }
